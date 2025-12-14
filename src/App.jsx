@@ -1,16 +1,22 @@
 import React from "react";
-import Nav from "./Components/NavBar/Nav";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./Components/HomePage/HomePage";
+import About from "./Components/AboutPage/About";
+import Property from "./Components/PropertyPage/Property";
+import Contact from "./Components/ContactPage/Contact";
+import Nav from "./Components/HomePage/NavBar/Nav";
 
 function App() {
   return (
-    <>
-      <div className="bg-blue-500 flex justify-center p-5 m-5 rounded-full">
-        <h1 className="text-xl font-semibold text-white">
-          Real Estate Project
-        </h1>
-      </div>
+    <Router>
       <Nav />
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/property" element={<Property />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
 }
 
