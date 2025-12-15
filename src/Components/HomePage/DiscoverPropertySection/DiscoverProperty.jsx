@@ -1,9 +1,13 @@
 import React from "react";
-import data from "./Data";
 import { FaBed, FaBath } from "react-icons/fa";
 import { TbSquare } from "react-icons/tb";
+import data from "../DiscoverPropertySection/Data";
 
 function DiscoverProperty() {
+  const residentialData = data.filter(
+    (item) => item.category === "Residential"
+  );
+
   return (
     <section className="mt-28">
       {/* Heading */}
@@ -16,11 +20,21 @@ function DiscoverProperty() {
         </p>
       </div>
 
+      {/* No Results */}
+      {residentialData.length === 0 && (
+        <div className="mt-16 text-center">
+          <h2 className="text-2xl font-semibold text-gray-700">
+            No properties found
+          </h2>
+          <p className="text-gray-500 mt-2">Try changing your search filters</p>
+        </div>
+      )}
+
       {/* Properties */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 mt-12 px-4 justify-items-center">
-        {data.map((info, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-6 mt-12 px-4 justify-items-center">
+        {residentialData.map((info) => (
           <div
-            key={index}
+            key={info.id}
             className="w-[350px] h-[400px] max-w-full bg-white rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.3)]
               hover:shadow-xl transition duration-300 overflow-hidden flex flex-col"
           >
@@ -31,7 +45,6 @@ function DiscoverProperty() {
                 alt={info.propertyName}
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
-              {/* Badge */}
               <span
                 className="absolute top-2 left-2 text-white px-6 py-1 rounded-[6px] text-[16px] font-bold"
                 style={{
@@ -59,7 +72,9 @@ function DiscoverProperty() {
                   <FaBed className="text-xl" />
                   <span className="text-sm font-semibold">{info.bedrooms}</span>
                 </div>
-                <span className="text-sm font-semibold text-black">Bedrooms</span>
+                <span className="text-sm font-semibold text-black">
+                  Bedrooms
+                </span>
               </div>
 
               <div className="flex flex-col items-center gap-1">
@@ -69,7 +84,9 @@ function DiscoverProperty() {
                     {info.bathrooms}
                   </span>
                 </div>
-                <span className="text-sm font-semibold text-black">Bathrooms</span>
+                <span className="text-sm font-semibold text-black">
+                  Bathrooms
+                </span>
               </div>
 
               <div className="flex flex-col items-center gap-1">
@@ -79,7 +96,9 @@ function DiscoverProperty() {
                     {info.totalArea}
                   </span>
                 </div>
-                <span className="text-sm font-semibold text-black">Total Area</span>
+                <span className="text-sm font-semibold text-black">
+                  Total Area
+                </span>
               </div>
             </div>
           </div>
