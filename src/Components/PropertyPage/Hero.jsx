@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import heroImage from "../../../assets/images/Hero.jpg";
+import heroImage from "../../assets/images/Hero.jpg";
 import { CiSearch } from "react-icons/ci";
 
 function Hero({ onSearch }) {

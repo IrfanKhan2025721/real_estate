@@ -5,6 +5,8 @@ import CommercialProperties from "./CommercialProperty/CommercialProperties";
 import data from "./DiscoverPropertySection/Data";
 import Testimonial from "./testimonials/testimonial";
 import ActionPlan from "./ActionPlan";
+import Form from "./ContactForm/Form";
+import Cities from "./CitySection/Cities";
 
 function HomePage() {
   const [filteredData, setFilteredData] = useState(data);
@@ -35,6 +37,9 @@ function HomePage() {
       <CommercialProperties
         data={filteredData.filter((item) => item.category === "Commercial")}
       />
+
+      <Form />
+      <Cities />
     </>
   );
 }
