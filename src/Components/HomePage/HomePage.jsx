@@ -3,7 +3,7 @@ import Hero from "./HeroSection/Hero";
 import DiscoverProperty from "./DiscoverPropertySection/DiscoverProperty";
 import CommercialProperties from "./CommercialProperty/CommercialProperties";
 import data from "./DiscoverPropertySection/Data";
-import Testimonial from "./testimonials/testimonial";
+import Testimonial from "./Testimonials/Testimonial";
 import ActionPlan from "./ActionPlan";
 import Form from "./ContactForm/Form";
 import Cities from "./CitySection/Cities";
