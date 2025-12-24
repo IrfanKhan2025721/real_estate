@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import { FaBed, FaBath } from "react-icons/fa";
-import { TbSquare } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import { Heart, MapPin, Bed, Bath, Maximize2 } from "lucide-react";
 import data from "../PropertyPage/Data";
 import Hero from "../PropertyPage/Hero";
 
 function Property() {
   const [filteredData, setFilteredData] = useState(data);
 
-  // Callback function for Hero component
   const handleSearch = (filters) => {
     const { category, propertyType, location } = filters;
 
-    const filtered = data.filter((item) => {
-      return (
+    const filtered = data.filter(
+      (item) =>
         (category ? item.category === category : true) &&
         (propertyType ? item.propertyType === propertyType : true) &&
         (location ? item.city === location : true)
-      );
-    });
+    );
 
     setFilteredData(filtered);
   };
@@ -26,17 +24,7 @@ function Property() {
     <>
       <Hero onSearch={handleSearch} />
 
-      <section className="mt-28 mb-16">
-        {/* Heading */}
-        <div className="flex flex-col items-center text-center px-4">
-          <h1 className="font-bold text-2xl md:text-3xl">
-            Discover your featured property
-          </h1>
-          <p className="text-gray-600 mt-2 max-w-xl">
-            Explore our handpicked properties and find your perfect home today.
-          </p>
-        </div>
-
+      <section className="mt-28 mb-20 bg-white">
         {/* No Results */}
         {filteredData.length === 0 && (
           <div className="mt-16 text-center">
@@ -49,77 +37,92 @@ function Property() {
           </div>
         )}
 
-        {/* Properties */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-6 mt-12 px-4 justify-items-center">
+        {/* Property Cards */}
+        <div className="mt-14 max-w-7xl mx-auto px-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {filteredData.map((info) => (
             <div
               key={info.id}
-              className="w-[350px] h-[400px] max-w-full bg-white rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.3)]
-              hover:shadow-xl transition duration-300 overflow-hidden flex flex-col"
+              className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group"
             >
               {/* Image */}
-              <div className="w-full h-[200px] relative overflow-hidden">
+              <div className="relative">
                 <img
                   src={info.image}
                   alt={info.propertyName}
-                  className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                  className="h-56 w-full object-cover"
                 />
-                <span
-                  className="absolute top-2 left-2 text-white px-6 py-1 rounded-[6px] text-[16px] font-bold"
-                  style={{
-                    backgroundColor:
-                      info.status === "For Rent" ? "#9653DA" : "#8EDA53",
-                  }}
-                >
-                  {info.status}
-                </span>
-              </div>
 
-              {/* Info */}
-              <div className="p-4 flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">{info.propertyName}</h3>
-                <p className="text-sm text-gray-500">{info.location}</p>
-                <span className="text-blue-600 font-bold text-lg">
-                  {info.price}
-                </span>
-              </div>
-
-              {/* Features */}
-              <div className="mt-auto px-4 py-4 border-t flex justify-around text-gray-600">
-                <div className="flex flex-col items-center gap-1">
-                  <div className="flex items-center gap-2">
-                    <FaBed className="text-xl" />
-                    <span className="text-sm font-semibold">
-                      {info.bedrooms}
-                    </span>
-                  </div>
-                  <span className="text-sm font-semibold text-black">
-                    Bedrooms
+                {/* Tags */}
+                <div className="absolute top-3 left-3 flex gap-2">
+                  <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                    {info.propertyType}
+                  </span>
+                  <span
+                    className={`text-white text-xs px-3 py-1 rounded-full ${
+                      info.status === "For Rent"
+                        ? "bg-purple-600"
+                        : "bg-green-600"
+                    }`}
+                  >
+                    {info.status}
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center gap-1">
-                  <div className="flex items-center gap-2">
-                    <FaBath className="text-xl" />
-                    <span className="text-sm font-semibold">
-                      {info.bathrooms}
-                    </span>
-                  </div>
-                  <span className="text-sm font-semibold text-black">
-                    Bathrooms
+                {/* Heart */}
+                <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                  <Heart className="w-4 h-4 text-slate-500" />
+                </button>
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <Link
+                    to={`/property/${info.id}`}
+                    className="bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 text-left">
+                <h3 className="font-bold text-slate-900 leading-snug">
+                  {info.propertyName}
+                </h3>
+
+                <p className="mt-2 flex items-center gap-1 text-sm text-slate-500">
+                  <MapPin className="w-4 h-4" />
+                  {info.location}
+                </p>
+
+                {/* Details */}
+                <div className="mt-4 flex justify-between text-sm text-slate-600">
+                  <span className="flex items-center gap-1">
+                    <Bed className="w-4 h-4" />
+                    {info.bedrooms} Beds
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Bath className="w-4 h-4" />
+                    {info.bathrooms} Baths
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Maximize2 className="w-4 h-4" />
+                    {info.totalArea}
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center gap-1">
-                  <div className="flex items-center gap-2">
-                    <TbSquare className="text-xl" />
-                    <span className="text-sm font-semibold">
-                      {info.totalArea}
-                    </span>
-                  </div>
-                  <span className="text-sm font-semibold text-black">
-                    Total Area
-                  </span>
+                {/* Price */}
+                <div className="mt-5 flex items-center justify-between">
+                  <p className="text-blue-600 font-extrabold text-lg">
+                    {info.price}
+                  </p>
+
+                  <Link
+                    to={`/property/${info.id}`}
+                    className="text-sm text-blue-600 font-semibold hover:underline"
+                  >
+                    Purchase
+                  </Link>
                 </div>
               </div>
             </div>

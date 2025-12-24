@@ -19,7 +19,7 @@ function Cities() {
         {/* Kabul */}
         <div className="relative rounded-xl overflow-hidden lg:col-span-2">
           <div
-            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110"
+            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110 hover:z-20 relative"
             style={{ backgroundImage: `url(${cities[0].image})` }}
           ></div>
           <Overlay city={cities[0]} />
@@ -28,7 +28,7 @@ function Cities() {
         {/* Balkh */}
         <div className="relative rounded-xl overflow-hidden">
           <div
-            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110"
+            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110 hover:z-20 relative"
             style={{ backgroundImage: `url(${cities[2].image})` }}
           ></div>
           <Overlay city={cities[2]} />
@@ -37,7 +37,7 @@ function Cities() {
         {/* Jalalabad */}
         <div className="relative rounded-xl overflow-hidden lg:row-span-2">
           <div
-            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110"
+            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110 hover:z-20 relative"
             style={{ backgroundImage: `url(${cities[4].image})` }}
           ></div>
           <Overlay city={cities[4]} />
@@ -46,7 +46,7 @@ function Cities() {
         {/* Kandahar */}
         <div className="relative rounded-xl overflow-hidden">
           <div
-            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110"
+            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110 hover:z-20 relative"
             style={{ backgroundImage: `url(${cities[3].image})` }}
           ></div>
           <Overlay city={cities[3]} />
@@ -55,7 +55,7 @@ function Cities() {
         {/* Herat */}
         <div className="relative rounded-xl overflow-hidden lg:col-span-2">
           <div
-            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110"
+            className="w-full h-full bg-cover bg-center transform transition-transform duration-500 hover:scale-110 hover:z-20 relative"
             style={{ backgroundImage: `url(${cities[1].image})` }}
           ></div>
           <Overlay city={cities[1]} />
@@ -67,10 +67,8 @@ function Cities() {
 
 function Overlay({ city }) {
   return (
-    <div className="absolute inset-0 z-10 bg-black/40 hover:bg-black/50 transition flex flex-col justify-end p-4 cursor-pointer">
-      {/* Province name */}
-      <p className=" text-white text-lg font-semibold">{city.provience}</p>
-      {/* Property number */}
+    <div className="absolute inset-0 z-10 bg-black/20 flex flex-col justify-end p-4 transition-all duration-300 hover:bg-black/40">
+      <p className="text-white text-lg font-semibold">{city.provience}</p>
       <h2 className="text-gray-200 text-sm">{city.properties} properties</h2>
     </div>
   );

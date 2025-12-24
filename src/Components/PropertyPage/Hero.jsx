@@ -33,7 +33,11 @@ function Hero({ onSearch }) {
         <h1 className="text-4xl font-bold text-white mb-4">
           Find a Home That Suits Your Lifestyle
         </h1>
-        <p className="text-lg text-white">Discover your perfect home today.</p>
+        <p className="text-lg text-white">
+          Find the home that fits your lifestyle and needs Explore our curated
+          listings with ease, <br /> and discover a space where your dreams come
+          true.
+        </p>
       </div>
 
       {/* Search Bar */}

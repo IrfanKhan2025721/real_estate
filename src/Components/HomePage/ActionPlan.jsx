@@ -9,7 +9,7 @@ function ActionPlan() {
         <img
           src={image}
           alt="apartment"
-          className="w-40 sm:w-52 md:w-60 rounded-lg object-cover"
+          className="w-full sm:w-80 md:w-72 rounded-lg object-cover"
         />
       </div>
 

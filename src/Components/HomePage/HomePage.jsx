@@ -15,8 +15,9 @@ function HomePage() {
     const result = data.filter((item) => {
       return (
         (!filters.category || item.category === filters.category) &&
-        (!filters.propertyType || item.propertyType === filters.propertyType) &&
-        (!filters.location || item.city === filters.location)
+        (!filters.propertyType ||
+          item.propertyType === filters.propertyType) &&
+        (!filters.city || item.city === filters.city)
       );
     });
 
@@ -28,14 +29,18 @@ function HomePage() {
       <Hero onSearch={handleSearch} />
 
       <DiscoverProperty
-        data={filteredData.filter((item) => item.category === "Residential")}
+        data={filteredData.filter(
+          (item) => item.category === "Residential"
+        )}
       />
 
       <ActionPlan />
       <Testimonial />
 
       <CommercialProperties
-        data={filteredData.filter((item) => item.category === "Commercial")}
+        data={filteredData.filter(
+          (item) => item.category === "Commercial"
+        )}
       />
 
       <Form />
