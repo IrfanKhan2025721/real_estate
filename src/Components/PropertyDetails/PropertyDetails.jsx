@@ -1,5 +1,5 @@
 import React from "react";
-import video from "../../assets/images/realEstate (2).MP4";
+import video from "../../assets/images/realestate.MP4";
 
 const propertyData = {
   description:
@@ -105,7 +105,7 @@ function PropertyDetails() {
         <section>
           <h2 className="text-lg font-semibold mb-4">Property Video Tour</h2>
           <div className="w-full h-72 rounded-lg overflow-hidden shadow">
-            <video src={video} muted className="w-full h-full object-cover" />
+            <video src={video} muted controls loop className="w-full h-full object-cover" />
           </div>
         </section>
       </div>
